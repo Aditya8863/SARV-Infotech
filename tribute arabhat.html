@@ -1,0 +1,804 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aryabhata | The Genius Who Reached for the Stars</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #05051a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ===== STAR BACKGROUND ===== */
+
+        .stars,
+        .stars::before,
+        .stars::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow:
+                20px 80px white,
+                100px 150px #ffd166,
+                180px 50px white,
+                260px 200px #7df9ff,
+                340px 100px white,
+                420px 300px #ff6ec7,
+                500px 170px white,
+                600px 70px #ffd166,
+                700px 250px white,
+                800px 120px #7df9ff,
+                900px 300px white,
+                1000px 100px #ff6ec7,
+                1100px 230px white,
+                1200px 70px #ffd166;
+            animation: twinkle 4s infinite alternate;
+            z-index: -2;
+        }
+
+        .stars::before {
+            transform: translateY(350px);
+            opacity: 0.6;
+        }
+
+        .stars::after {
+            transform: translateY(650px);
+            opacity: 0.4;
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
+
+        /* ===== NAVBAR ===== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 26, 0.75);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd166;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #7df9ff;
+        }
+
+        /* ===== HERO ===== */
+
+        .hero {
+            min-height: 100vh;
+            padding: 120px 8% 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .small-title {
+            color: #7df9ff;
+            letter-spacing: 4px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(50px, 8vw, 100px);
+            line-height: 0.95;
+            background: linear-gradient(
+                90deg,
+                #ffd166,
+                #ff6ec7,
+                #7df9ff
+            );
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero h2 {
+            margin-top: 20px;
+            font-size: 27px;
+            color: #eee;
+        }
+
+        .hero p {
+            margin-top: 20px;
+            color: #c9c9dd;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 28px;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #ff6ec7, #7df9ff);
+            color: #05051a;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* ===== PORTRAIT ===== */
+
+        .portrait-box {
+            width: 350px;
+            height: 350px;
+            
+            padding: 8px;
+            background: conic-gradient(
+                #ffd166,
+                #ff6ec7,
+                #7df9ff,
+                #ffd166
+            );
+            animation: rotate 8s linear infinite;
+            box-shadow: 0 0 80px rgba(125,249,255,0.3);
+        }
+
+        .portrait {
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+            background: #11112d;
+            animation: counterRotate 8s linear infinite;
+        }
+
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes counterRotate {
+            to { transform: rotate(-360deg); }
+        }
+
+        /* ===== SECTION ===== */
+
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            background: linear-gradient(90deg,#ffd166,#ff6ec7,#7df9ff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .section-title p {
+            margin-top: 10px;
+            color: #aaaac5;
+        }
+
+        /* ===== FACT CARDS ===== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            padding: 30px;
+            min-height: 220px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(15px);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            border-color: #7df9ff;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #ffd166;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #c8c8da;
+            line-height: 1.7;
+        }
+
+        /* ===== ZERO SECTION ===== */
+
+        .zero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 70px;
+            flex-wrap: wrap;
+        }
+
+        .zero {
+            font-size: 260px;
+            font-weight: bold;
+            background: linear-gradient(
+                135deg,
+                #ffd166,
+                #ff6ec7,
+                #7df9ff
+            );
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+
+        .zero-text {
+            max-width: 550px;
+        }
+
+        .zero-text h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .zero-text p {
+            color: #c8c8da;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* ===== TIMELINE ===== */
+
+        .timeline {
+            max-width: 850px;
+            margin: auto;
+            border-left: 3px solid #ff6ec7;
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.06);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -42px;
+            top: 28px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #7df9ff;
+            box-shadow: 0 0 20px #7df9ff;
+        }
+
+        .timeline-item h3 {
+            color: #ffd166;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item p {
+            color: #c8c8da;
+            line-height: 1.7;
+        }
+
+        /* ===== QUOTE ===== */
+
+        .quote {
+            text-align: center;
+            max-width: 900px;
+            margin: auto;
+            padding: 60px 30px;
+            border-radius: 35px;
+            background: linear-gradient(
+                135deg,
+                rgba(255,110,199,0.12),
+                rgba(125,249,255,0.1)
+            );
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .quote-text {
+            font-size: 30px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .quote span {
+            display: block;
+            margin-top: 20px;
+            color: #ffd166;
+        }
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            text-align: center;
+            padding: 35px;
+            background: #030312;
+            color: #aaaac5;
+        }
+
+        footer strong {
+            color: #7df9ff;
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media(max-width: 850px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav div:last-child {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 140px;
+            }
+
+            .portrait-box {
+                width: 280px;
+                height: 280px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .zero {
+                font-size: 170px;
+            }
+
+            .zero-text {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="logo">ARYABHATA ✦</div>
+
+    <div>
+        <a href="#home">Home</a>
+        <a href="#legacy">Legacy</a>
+        <a href="#timeline">Journey</a>
+        <a href="#inspiration">Inspiration</a>
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-text">
+
+        <div class="small-title">
+            A TRIBUTE TO A LEGEND
+        </div>
+
+        <h1>Aryabhata</h1>
+
+        <h2>The Man Who Measured the Stars ✨</h2>
+
+        <p>
+            More than a mathematician, Aryabhata was a visionary thinker
+            who looked at the universe with curiosity, logic and courage.
+            His ideas changed mathematics and astronomy forever.
+        </p>
+
+        <a href="#legacy" class="btn">
+            Explore His Legacy ↓
+        </a>
+
+    </div>
+
+
+    <div class="portrait-box">
+
+        <div class="portrait">
+
+            <!-- Aryabhata image -->
+            <img
+                src="https://tse4.mm.bing.net/th/id/OIP.fksUM6bzZB69OwCLR70z4gHaGK?r=0&pid=Api&P=0&h=180"
+                alt="Aryabhata"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LEGACY -->
+
+<section id="legacy">
+
+    <div class="section-title">
+
+        <h2>A Mind Ahead of His Time</h2>
+
+        <p>
+            Discover some of Aryabhata's remarkable contributions.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icon">🔢</div>
+
+            <h3>Mathematics</h3>
+
+            <p>
+                Aryabhata developed important mathematical ideas and
+                methods that influenced generations of mathematicians.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🌌</div>
+
+            <h3>Astronomy</h3>
+
+            <p>
+                He studied the movement of celestial bodies and proposed
+                scientific explanations for astronomical phenomena.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🌍</div>
+
+            <h3>Earth's Rotation</h3>
+
+            <p>
+                Aryabhata explained that the apparent movement of the
+                stars could be understood through the rotation of Earth.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🥧</div>
+
+            <h3>Value of Pi</h3>
+
+            <p>
+                He gave a remarkably accurate approximation of π,
+                demonstrating his advanced mathematical understanding.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">📖</div>
+
+            <h3>Aryabhatiya</h3>
+
+            <p>
+                His famous work Aryabhatiya became an important
+                mathematical and astronomical text.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🚀</div>
+
+            <h3>Visionary Thinking</h3>
+
+            <p>
+                His curiosity reminds us that great discoveries begin
+                with the courage to question what everyone assumes.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ZERO -->
+
+<section>
+
+    <div class="zero-section">
+
+        <div class="zero">
+            0
+        </div>
+
+        <div class="zero-text">
+
+            <h2>The Power of a Simple Number</h2>
+
+            <p>
+                Aryabhata's mathematical legacy became a foundation for
+                the development of Indian mathematics. His work represents
+                the extraordinary mathematical thinking of ancient India.
+            </p>
+
+            <p style="margin-top:15px;">
+                The number system that the world uses today transformed
+                mathematics, science, computing and technology.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TIMELINE -->
+
+<section id="timeline">
+
+    <div class="section-title">
+
+        <h2>A Journey Through Time</h2>
+
+        <p>
+            A glimpse into the life and work of Aryabhata.
+        </p>
+
+    </div>
+
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+
+            <h3>476 CE — Birth</h3>
+
+            <p>
+                Aryabhata was born in the 5th century CE and later became
+                one of India's greatest mathematicians and astronomers.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <h3>499 CE — Aryabhatiya</h3>
+
+            <p>
+                Around the age of 23, Aryabhata composed Aryabhatiya,
+                a remarkable work covering mathematics and astronomy.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <h3>Mathematics & Astronomy</h3>
+
+            <p>
+                His work included calculations involving π, trigonometry,
+                planetary movements and astronomical time calculations.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <h3>Legacy — Forever</h3>
+
+            <p>
+                Centuries later, Aryabhata continues to inspire students,
+                scientists, mathematicians and space researchers.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INSPIRATION -->
+
+<section id="inspiration">
+
+    <div class="section-title">
+
+        <h2>Why Aryabhata Inspires Me</h2>
+
+        <p>
+            A tribute is not only about remembering a person,
+            but also about learning from them.
+        </p>
+
+    </div>
+
+
+    <div class="quote">
+
+        <div class="quote-text">
+            "Curiosity turns questions into discoveries."
+        </div>
+
+        <span>— Inspired by Aryabhata's spirit of exploration</span>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        Made with ❤️ as a tribute to
+        <strong>Aryabhata</strong>
+    </p>
+
+    <p style="margin-top:10px;">
+        Mathematics • Astronomy • Curiosity • Innovation
+    </p>
+
+</footer>
+
+
+<script>
+
+    // ===== SCROLL REVEAL EFFECT =====
+
+    const cards = document.querySelectorAll(".card");
+    const timeline = document.querySelectorAll(".timeline-item");
+
+    const observer = new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+
+    [...cards, ...timeline].forEach(element => {
+
+        element.style.opacity = "0";
+        element.style.transform = "translateY(40px)";
+        element.style.transition = "0.8s ease";
+
+        observer.observe(element);
+
+    });
+
+
+    // ===== DYNAMIC TITLE =====
+
+    const originalTitle = document.title;
+
+    window.addEventListener("blur", () => {
+        document.title = "Come back to Aryabhata ✨";
+    });
+
+    window.addEventListener("focus", () => {
+        document.title = originalTitle;
+    });
+
+</script>
+
+</body>
+</html>
+```
